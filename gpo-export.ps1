@@ -44,10 +44,8 @@ while ($export -ne "y" -and $export -ne "n") {
     }
 }
 
-if (-not (Test-Path -Path C:\temp)) {
-    New-Item -Path C:\temp -ItemType Directory
-    $exportPath = New-Item -Path C:\temp\$($gpo.DisplayName) -ItemType Directory
-
+if (-not (Test-Path -Path C:\temp\$($gpo.DisplayName))) {
+    New-Item -Path C:\temp\$($gpo.DisplayName) -ItemType Directory
 }
 # backup the gpo by searching for its id
 Backup-GPO -Name $gpo.DisplayName -Path C:\temp\$($gpo.DisplayName)
